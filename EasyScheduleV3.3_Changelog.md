@@ -2,7 +2,7 @@
 
 ## Version 3.3.0 - Strip Sorting Algorithm (2025-03-12)
 
-### 🎯 Major Feature: Strip Sorting System
+### Strip Sorting System
 
 #### **Complete Sorting Implementation**
 - **Sort Strips Button**: New button in action bar between Add buttons and Filters
@@ -12,7 +12,7 @@
 - **Day-Aware Sorting**: Within Days mode respects daybreak boundaries, sorts each day independently
 - **Stable Sort Algorithm**: Preserves original order when all sort keys are equal
 
-### 🎯 Major Feature: Precise Daybreak Placement
+### Precise Daybreak Placement
 
 #### **Add Daybreak Below Button**
 - **Green "+ Daybreak" button** added to all scene and banner strips (expanded view)
@@ -28,7 +28,7 @@
 - ⚪ **Gray** (Boneyard) - Deactivates
 - 🔴 **Red** (Delete) - Danger/permanent removal
 
-### 🔧 Sorting Features
+### Sorting Features
 
 #### **UI Controls**
 - "Sort Strips" button with confirmation dialog (always shown)
@@ -55,7 +55,7 @@
 - Null/undefined defaults to "INT"
 - Full support for INT/EXT value (added in V3.2)
 
-### 📊 Sorting Modes
+### Sorting Modes
 
 #### **Global Sort**
 1. Extracts all banners → moves to top of stripboard
@@ -75,14 +75,14 @@
 4. Empty segments handled gracefully (daybreak preserved or removed)
 5. Results in multi-day stripboard with each day sorted internally
 
-### 🔍 Problematic Strip Detection
+### Problematic Strip Detection
 
 - **Automatic detection** of "UNNAMED SET" and null/empty set names
 - **Post-sort alert** displays counts and asks user to review
 - **Alert wording**: "3 'UNNAMED SET' strips and 2 strips with no set name have been moved to the bottom. Please review and assign proper set names."
 - Grammatically correct (singular/plural handling)
 
-### 🎨 Integration
+### Integration
 
 #### **Lock System**
 - Sort button disabled when stripboard locked
@@ -104,7 +104,7 @@
 - `scrollToTop()` scrolls workspace to beginning
 - User immediately sees sorted result
 
-### 📋 Data Integrity
+### Data Integrity
 
 #### **Preserved During Sort**
 - Scene numbers (strips keep original scene numbers, no renumbering)
@@ -117,7 +117,7 @@
 - Strip order (reordered according to sort algorithm)
 - Daybreak structure (Global removes all, Within Days may remove empty segments)
 
-### 🧪 Edge Cases Handled
+### Edge Cases Handled
 
 - **Empty stripboard** (0 scenes): Confirmation shows "0 scenes", sort executes safely
 - **Single scene**: Sort executes without error
@@ -128,7 +128,7 @@
 - **All scenes identical**: Stable sort preserves original order
 - **Repeated sorts**: Can sort multiple times, each sort starts from current state
 
-### 🚀 Performance
+### Performance
 
 - **Global Sort**: O(n log n) time complexity
 - **Within Days Sort**: O(n log n) total across all segments
@@ -136,7 +136,7 @@
 - **No optimization needed** for expected use cases
 - **Lightweight loading indicator**: Minimal overhead (2 DOM elements, inline CSS)
 
-### 📝 User Workflow
+### User Workflow
 
 #### **Typical Usage**
 1. Import FDX or load CSV
@@ -156,13 +156,7 @@
 - Save CSV to persist sorted order
 - Preview/print sorted stripboard
 
-### 🐛 Bug Fixes
-
-- **Within Days checkbox state**: Now resets to unchecked on CSV load (consistent with session-only state)
-- **Empty day segment handling**: Properly handled in Within Days mode
-- **Sort button lock state**: Correctly disabled/enabled on lock toggle and CSV load
-
-### 🔒 Limitations & Design Decisions
+### Limitations & Design Decisions
 
 - **No undo**: Sort cannot be undone (by design - user has Save/Load as safety net)
 - **Confirmation always shown**: Prevents accidental sorts on large stripboards
@@ -170,31 +164,7 @@
 - **Empty day cleanup**: Within Days mode may remove empty segments (intentional optimization)
 - **Global removes daybreaks**: Movie Magic standard behavior for cross-day sorting
 
-### 📚 Technical Implementation
-
-#### **New Functions** (~510 lines total)
-- `compareSetNames()`: Set comparison with special handling
-- `compareTimeOfDay()`: ToD comparison with canonical order
-- `compareIntExt()`: INT/EXT comparison with canonical order
-- `compareStrips()`: Master comparison function (stable sort)
-- `detectProblematicStrips()`: Counts UNNAMED SET and null sets
-- `alertProblematicStrips()`: User-friendly alert with grammar handling
-- `initiateSortStrips()`: Entry point, lock check, confirmation
-- `confirmSort()`: Confirmation dialog with mode-specific messaging
-- `showSortingIndicator()` / `hideSortingIndicator()`: Loading overlay
-- `sortStripsGlobally()`: Global sort implementation
-- `sortStripsWithinDays()`: Within Days sort implementation
-- `scrollToTop()`: Workspace scroll utility
-- `addDaybreakBelow()`: Inserts daybreak immediately below specified strip
-
-#### **Modified Functions**
-- `toggleStripOrderLock()`: Added Sort button disable/enable
-- `loadFromCSV()`: Added Sort button enable and checkbox reset
-
-#### **CSS Added**
-- `.sort-checkbox-label`: Checkbox styling consistent with UI
-- `.btn-add-daybreak`: Green button styling for daybreak addition
-- Hover states and spacing
+### Technical Implementation
 
 #### **HTML Added**
 - Sort Strips button
@@ -210,7 +180,7 @@
 
 ## Version 3.2.0 - FDX Import System (2025-03-11)
 
-### 🎯 Major Feature: FDX Import
+### FDX Import
 
 #### **Complete Final Draft Import Pipeline**
 - **Import FDX Button**: New menu bar button for importing .fdx, .fdxt, .xml files
@@ -219,7 +189,7 @@
 - **Robust Error Handling**: Validates XML structure and provides clear error messages
 - **Smart Fallback**: Gracefully handles malformed or incomplete FDX data
 
-### 🔧 Scene Heading Parser
+###  Scene Heading Parser
 
 #### **INT/EXT Extraction**
 - Supports standard formats: INT, EXT
@@ -251,7 +221,7 @@
 - Handles varied prefixes: "1. ", "1.- ", "30.- "
 - Skips OMITTED scenes automatically
 
-### 👥 Cast Extraction System
+### Cast Extraction System
 
 #### **Two-Source Hierarchy**
 - **PRIMARY Source**: `<Paragraph Type="Character">` (characters with dialogue)
@@ -266,14 +236,14 @@
 - Converts character names to cast numbers in strips
 - **Clears previous cast list** on import for fresh start
 
-### 📊 Page Length Parsing
+### Page Length Parsing
 
 - Handles FDX Length formats: "6/8", "2 3/8", "1"
 - Converts to EasySchedule format: "whole fraction/8"
 - Defaults to "A 1/8" if missing (scene must have length)
 - Preserves exact page counts from screenplay
 
-### 🎨 UI Updates
+### UI Updates
 
 #### **INT/EXT Dropdown Enhancement**
 - Added INT/EXT as third option (was only INT, EXT)
@@ -286,7 +256,7 @@
 - **Clears on FDX import**: Fresh start for each screenplay
 - Auto-populates orphaned assignments with validation
 
-### 🐛 Bug Fixes
+### Bug Fixes
 
 #### **Data Model Consistency**
 - Fixed INT/EXT not being selectable option in dropdowns
@@ -301,7 +271,7 @@
 - Fixed spaced INT/EXT variations ("INT. / EXT.")
 - Fixed trailing punctuation in set names
 
-### 📋 Post-Import Behavior
+### Post-Import Behavior
 
 **Automatic Actions After FDX Import:**
 - Assignment lists cleared and repopulated
@@ -316,49 +286,13 @@
 - Scene descriptions (not in FDX - user adds)
 - Locations (not parsed per production requirements)
 
-### 🧪 Testing & Validation
-
-#### **Comprehensive Regression Suite**
-- 44 core functionality tests ✅
-- 9 error handling tests ✅
-- **Total: 53/53 tests passing**
-
-#### **Test Coverage**
-- Scene number extraction (all 3 priority levels)
-- INT/EXT parsing (6 format variations)
-- Set name extraction (5 edge cases)
-- Time of Day normalization (60+ variations)
-- Cast extraction (dialogue + non-speaking)
-- Page length parsing (4 formats)
-- Error handling (malformed XML, missing elements, empty files)
-
-#### **Real-World Testing**
-- Simple FDX: FadeIn formatted (clean structure)
-- Typical FDX: FBI English screenplay (standard production)
-- Complex FDX: MAC Spanish screenplay (heavy styling, multiple Text nodes)
-
-### 📝 Technical Implementation
-
-#### **New Functions Added** (~450 lines)
-- `importFDX()`: Entry point and file picker
-- `parseFDX()`: Main parser with XML validation
-- `parseScenes()`: Scene iteration and extraction
-- `extractFullText()`: Multi-node Text concatenation
-- `extractSceneNumber()`: 3-tier priority extraction
-- `parseSceneHeading()`: INT/EXT, Set, ToD parsing
-- `normalizeIntExt()`: INT/EXT variation handling
-- `normalizeTimeOfDay()`: Canonical ToD mapping (60+ values)
-- `parseFDXLength()`: Page length conversion
-- `extractCastForScene()`: Two-source cast hierarchy
-- `processFDXCast()`: Cast list population and name→number conversion
-- `calculateEstTime()`: Default time estimation
 
 #### **Modified Functions**
 - Color mapping: Added INT/EXT support
 - Import workflow: Added assignment list clearing
 - Post-import: Added validation and auto-population
 
-### 🔒 Data Integrity
+### Data Integrity
 
 - **Session-Only Import**: FDX import replaces current stripboard
 - **Confirmation Dialog**: Warns user before replacing existing data
@@ -366,7 +300,7 @@
 - **No Location Import**: Per production requirements (locations set during prep)
 - **Preserve User Intent**: Full set names, scene numbers, cast assignments maintained
 
-### 🚀 Performance
+### Performance
 
 - Instant parsing for typical screenplays (<100 scenes)
 - Handles complex multi-node Text structures (MAC Spanish file: 84 scenes)
@@ -376,8 +310,6 @@
 ---
 
 ## Version 3.1.0 - Filter System (2025-03-11)
-
-### 🎯 Major Features
 
 #### **Stripboard Filtering System**
 - **Day Filters**: Filter strips by shooting day with multi-select checkboxes
@@ -395,7 +327,7 @@
 - **Active State Styling**: Gold background with black text for open dropdowns
 - **Blue Filter Pills**: High-contrast blue (#4A90E2) for readability on dark backgrounds
 
-### 🔧 Filter Logic & Behavior
+### Filter Logic & Behavior
 
 #### **Day Segmentation**
 - Automatic day assignment based on daybreak positions
@@ -417,7 +349,7 @@
 - Insertion line shows exact drop position
 - Enhanced visual feedback: 2% scale + shadow on drag-over
 
-### 📊 Data Integrity
+### Data Integrity
 
 - **Session-Only State**: Filters never saved to CSV
 - **Auto-Clear on Load**: Filters reset when loading new CSV
@@ -425,7 +357,7 @@
 - **Preview/Print Unaffected**: Always show ALL strips regardless of active filters
 - **Boneyard Exclusion**: Inactive strips never appear in filtered views
 
-### 🐛 Bug Fixes
+### Bug Fixes
 
 #### **Daybreak Issues (V2.7.4)**
 - Fixed daybreaks converting to banners on CSV save/load
@@ -446,7 +378,7 @@
 - Fixed banner filter logic to check location field
 - Fixed banners with matching locations not appearing if only strip in day
 
-### 🎨 UI/UX Improvements
+### UI/UX Improvements
 
 #### **Strip Display (V2.8.0)**
 - All strips default to minimized state (`uiMinimized: true`)
@@ -463,57 +395,6 @@
 - Responsive layout with flex-wrap for narrow viewports
 - Disabled state for Clear Filters when no filters active
 
-### 🔒 Phase Completion Status
-
-- ✅ **Phase 1**: Day Segmentation Foundation
-- ✅ **Phase 2**: Filter State & Basic Logic  
-- ✅ **Phase 3**: Filter UI Component
-- ✅ **Phase 4**: Cross-Day Drag & Drop
-- ✅ **Phase 5**: Edge Cases & Integration
-- ✅ **Phase 6**: Final Regression Suite (47/47 tests passing)
-- ✅ **Phase 7**: UI Polish & Three-Dropdown Design
-
-### 📝 Technical Details
-
-#### **New Functions**
-- `assignDaySegments(strips)`: Assigns day numbers based on daybreak positions
-- `getAvailableFilterOptions()`: Collects unique days, sets, locations for checkboxes
-- `applyFilters(strips)`: Core filtering logic with daybreak inclusion
-- `toggleFilterDropdown(type)`: Opens/closes specific filter dropdown
-- `populateFilterUI()`: Generates filter checkboxes from current strips
-- `createFilterCheckbox(type, value, label)`: Creates individual checkbox element
-- `toggleFilter(type, value)`: Adds/removes filter and rerenders
-- `createFilterPill(type, value, label)`: Creates removable filter pill
-- `clearAllFilters()`: Resets all filters and rerenders
-- `updateFilterPills()`: Updates active filter pill display
-- `updateClearButton()`: Enables/disables Clear Filters button
-- `scrollToTop()`: Scrolls workspace to top on filter change
-- `closeFilterDropdownIfClickedOutside(e)`: Auto-closes dropdowns
-
-#### **Modified Functions**
-- `renderStrips()`: Now calls `applyFilters()` before rendering
-- `loadFromCSV()`: Clears filters and calls `recalcSchedule()` after load
-- `recalcSchedule()`: Fixed to use each daybreak's own call time
-- `getMetricsForDaybreak()`: Uses canonical strip list instead of filtered
-- `handleContainerDrop()`: Enhanced for cross-day drag with filters
-
-#### **CSV Format Changes**
-- Added 'Call Time' column (scenes: empty, daybreaks: HH:MM, banners: empty)
-- Explicit `type='daybreak'` handling (previously fell through to banner)
-- No filter-related data stored (filters are session-only UI state)
-
-### 🧪 Testing
-
-**Comprehensive test matrix passed:**
-- Core functionality: 16/16 tests ✅
-- Filter functionality: 9/9 tests ✅
-- Filter integration: 12/12 tests ✅
-- Day segmentation: 4/4 tests ✅
-- Data integrity: 8/8 tests ✅
-
-**Known Issues:**
-- None identified in production testing
-
 ### 🚀 Performance
 
 - Filters render instantly even with 50+ sets/locations
@@ -521,7 +402,7 @@
 - Individual column scrolling for long filter lists (max-height: 300px)
 - Lightweight DOM updates (only renders filtered strips)
 
-### 📋 Dependencies
+###  Dependencies
 
 - No new external dependencies
 - Uses existing Papa Parse for CSV operations
