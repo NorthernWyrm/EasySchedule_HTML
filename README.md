@@ -63,11 +63,33 @@ Preview generates a printable stripboard with:
 Export to browser print or PDF. All color coding is preserved.
 
 ## What This Tool Isn't
-EasySchedule was originally designed for single day schedules. Multi-day functionality is there, but is limited to daybreak logic. That means:
+EasySchedule was originally designed for single day schedules. Multi-day functionality is there, but is still limited to daybreak logic. That means:
 
  - No autodaybreak
  - No union timing
  - No weekend logic
  - No calendar
+**(yet!)**
 
 EasySchedule is not a breakdown tool, nor a call sheet tool.
+
+## **Typical Usage**
+1. Import FDX or load CSV
+2. Click "Sort Strips"
+3. Choose mode (uncheck for Global, check for Within Days)
+4. Confirm dialog (shows scene count, criteria, warning)
+5. Brief loading indicator
+6. Stripboard sorted and displayed
+7. Review problematic strips alert (if any)
+8. Manually adjust if needed
+9. Save CSV to preserve sorted order
+
+## Roadmap
+
+1. Include autodaybreak functions based on scene length/ Est. time
+2. Cast, Set and Location assignment consolidation engine (eliminates duplicates)
+3. More scene strip sort options
+4. Greyscale print mode
+5. Scene, Cast, Set and Location filters for Print
+6. Weekend traversal logic
+7. Expand FDX parser
